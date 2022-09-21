@@ -1,0 +1,57 @@
+.navbar {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+.left {
+    flex: 1;
+    font-weight: bold;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.mid {
+    flex: 3;
+    background-color: #f3f3f3;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.mid input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 14px;
+}
+
+.mid input:focus {
+    outline: none;
+}
+
+.search {
+    font-size: 24px;
+    margin-inline: 10px;
+    color: #F27A1A;
+    cursor: pointer;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.right div {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.right span {
+    margin-left: 5px;
+    color: #333333;
+    font-size: 13px;
+}
