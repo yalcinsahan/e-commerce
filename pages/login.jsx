@@ -23,11 +23,10 @@ export default function Login() {
 
             <form className={styles.form} onSubmit={(e) => handleLogin(e)}>
 
-                <h1>Sign-In</h1>
-
+                <h1>Login</h1>
 
                 <div className={styles.input}>
-                    <span>Mobile number or email</span>
+                    <span>e-mail</span>
                     <input
                         type="text"
                         value={user.email}

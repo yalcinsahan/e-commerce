@@ -42,7 +42,7 @@ export default function Signup() {
                 </div>
 
                 <div className={styles.input}>
-                    <span>Mobile number or email</span>
+                    <span>e-mail</span>
                     <input
                         type="text"
                         value={user.email}
