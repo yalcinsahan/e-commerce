@@ -5,9 +5,6 @@ import connectMongo from "../../../utils/connect-mongo";
 
 export const authOptions = {
 
-}
-
-export default NextAuth({
     providers: [
         CredentialProvider({
             name: "credentials",
@@ -28,7 +25,7 @@ export default NextAuth({
                     return {
                         id: user._id,
                         name: user.name,
-                        email: user.email
+                        role: user.role,
                     }
                 }
 
@@ -46,6 +43,7 @@ export default NextAuth({
             // first time jwt callback is run, user object is available
             if (user) {
                 token.id = user.id;
+                token.role = user.role;
             }
 
             return token;
@@ -54,6 +52,7 @@ export default NextAuth({
 
             if (token) {
                 session.id = token.id;
+                session.role = token.role;
             }
 
             return session;
@@ -67,4 +66,7 @@ export default NextAuth({
     pages: {
         signIn: "/login",
     },
-});
+}
+
+
+export default NextAuth(authOptions);
