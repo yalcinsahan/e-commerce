@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema(
         photos: [String],
         ratings: [{ name: String, star: Number }],
     },
-    {
+    { 
         timestamps: true
     }
 )

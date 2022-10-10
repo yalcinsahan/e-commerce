@@ -14,11 +14,13 @@
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.4",
     "axios": "^0.27.2",
+    "dotenv": "^16.0.3",
     "mongoose": "^6.5.2",
     "next": "12.2.5",
     "next-auth": "^4.10.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-indiana-drag-scroll": "^2.2.0"
   },
   "devDependencies": {
     "eslint": "8.22.0",

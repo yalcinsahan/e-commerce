@@ -1,4 +1,4 @@
-import { Login, Logout, PersonAddAlt, PersonOutline, Search, ShoppingCartOutlined } from '@mui/icons-material'
+import { Add, Login, Logout, PersonAddAlt, PersonOutline, Search, ShoppingCartOutlined } from '@mui/icons-material'
 import styles from '../styles/navbar.module.css'
 import Link from 'next/link'
 import { useSession, signOut } from "next-auth/react"
@@ -44,12 +44,21 @@ export default function Navbar() {
                             </div>
                         </Link>
 
-                        <Link href="/cart">
+                        {session.role=="admin" ?(
+                            <Link href="/add">
+                            <div>
+                                <Add />
+                                <span>Add</span>
+                            </div>
+                        </Link>
+                        ):(
+                            <Link href="/cart">
                             <div>
                                 <ShoppingCartOutlined />
                                 <span>Cart</span>
                             </div>
                         </Link>
+                        )}
 
                         <div onClick={() => signOut()}>
                             <Logout />
