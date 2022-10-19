@@ -10,7 +10,9 @@ export default function Navbar() {
     return (
         <div className={styles.navbar}>
             <div className={styles.left}>
-                E-Commerce
+                <Link href="/">
+                    E-Commerce
+                </Link>
             </div>
 
             <div className={styles.mid}>

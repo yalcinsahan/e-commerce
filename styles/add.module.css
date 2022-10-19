@@ -12,18 +12,20 @@
     margin: 0 auto;
 }
 
-.title, .details{
+.title,
+.details {
     margin-top: 20px;
     padding: 10px;
     border-radius: 5px;
     border: 2px solid gainsboro;
 }
 
-.title:focus, .details:focus{
+.title:focus,
+.details:focus {
     outline: none;
 }
 
-.photos{
+.photos {
     background-color: gainsboro;
     height: 200px;
     width: 150px;
@@ -35,11 +37,11 @@
     font-size: 13px;
 }
 
-.photos-wrapper{
+.photos-wrapper {
     position: relative;
 }
 
-.photos-wrapper input{
+.photos-wrapper input {
     display: block;
     position: absolute;
     top: 0;
@@ -49,25 +51,42 @@
     cursor: pointer;
 }
 
-.photo-area{
+.photo-area {
     margin-top: 20px;
     display: flex;
     align-items: center;
     cursor: grab;
 }
 
-.product-image{
+.product-image {
     height: 200px;
     margin-left: 20px;
 }
 
-.category{
+.category-price {
+    display: flex;
+    gap: 10px;
     margin-top: 20px;
-    cursor: pointer;
-    position: relative;
 }
 
-.text{
+.price {
+    flex: 1;
+    border: 2px solid gainsboro;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.price:focus {
+    outline: none;
+}
+
+.category {
+    cursor: pointer;
+    position: relative;
+    flex: 1;
+}
+
+.text {
     border: 2px solid gainsboro;
     border-radius: 5px;
     padding: 8px;
@@ -76,27 +95,27 @@
     justify-content: space-between;
 }
 
-.categories{
+.categories {
     position: absolute;
     display: flex;
     flex-direction: column;
     width: 100%;
     background-color: white;
-    -webkit-box-shadow: 10px 10px 53px 1px rgba(0,0,0,0.26);
--moz-box-shadow: 10px 10px 53px 1px rgba(0,0,0,0.26);
-box-shadow: 10px 10px 53px 1px rgba(0,0,0,0.26);
-z-index: 999;
+    -webkit-box-shadow: 10px 10px 53px 1px rgba(0, 0, 0, 0.26);
+    -moz-box-shadow: 10px 10px 53px 1px rgba(0, 0, 0, 0.26);
+    box-shadow: 10px 10px 53px 1px rgba(0, 0, 0, 0.26);
+    z-index: 999;
 }
 
-.categories span{
+.categories span {
     padding: 8px;
 }
 
-.categories span:hover{
+.categories span:hover {
     background-color: floralwhite;
 }
 
-.submit{
+.submit {
     margin-top: 20px;
     border: none;
     background-color: cornflowerblue;
@@ -106,7 +125,7 @@ z-index: 999;
     cursor: pointer;
 }
 
-.dialog-wrapper{
+.dialog-wrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -118,7 +137,8 @@ z-index: 999;
     background-color: transparent;
 }
 
-.success,.error{
+.success,
+.error {
     padding: 20px 40px;
     background-color: aqua;
     display: flex;
@@ -129,10 +149,10 @@ z-index: 999;
     border-radius: 20px;
 }
 
-.error{
+.error {
     background-color: red;
 }
 
-.dialog-icon{
+.dialog-icon {
     font-size: 48px;
 }

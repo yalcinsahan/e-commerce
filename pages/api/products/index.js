@@ -8,15 +8,22 @@ export default async function handler(req, res) {
     const session = await unstable_getServerSession(req, res, authOptions)
 
     if (session.role == "admin") {
+
         if (req.method === 'POST') {
             await connectMongo()
+                .then(async () => {
 
-            const { name, details, category, photos } = req.body
+                    try {
+                        const response = await Product.create(req.body)
+                        if (response._id) return res.json(response)
+                    } catch (error) {
+                        return res.json(error)
+                    }
 
-            Product.create({ name, details, category, photos })
-                .then(result => res.json(result))
-                .catch(err => res.json(err))
+                })
+                .catch(error => res.json(error))
         }
+
     }
 
     else if (session.role == "user") {
