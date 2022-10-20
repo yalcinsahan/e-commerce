@@ -19,8 +19,6 @@ export default function Login() {
     return (
         <div className={styles.login}>
 
-            <Navbar />
-
             <form className={styles.form} onSubmit={(e) => handleLogin(e)}>
 
                 <h1>Login</h1>

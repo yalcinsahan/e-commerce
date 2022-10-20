@@ -62,7 +62,6 @@ export default function AddProduct() {
 
     return (
         <div className={styles.add}>
-            <Navbar />
 
             {dialog ? (
                 <div className={styles["dialog-wrapper"]}>

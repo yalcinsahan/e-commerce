@@ -29,7 +29,6 @@ export default function Product() {
   return (
     product.name
       ? (<div className={styles.product}>
-        <Navbar />
 
         <div className={styles.wrapper} >
 

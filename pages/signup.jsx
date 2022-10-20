@@ -26,8 +26,6 @@ export default function Signup() {
     return (
         <div className={styles.signup}>
 
-            <Navbar />
-
             <form className={styles.form} onSubmit={(e) => handleSignup(e)}>
 
                 <h1>Create account</h1>

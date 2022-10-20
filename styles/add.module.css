@@ -1,8 +1,3 @@
-.add {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 .add form {
     display: flex;
     flex-direction: column;
