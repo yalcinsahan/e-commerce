@@ -45,7 +45,6 @@ export default async function handler(req, res) {
                                     await Product.findOneAndUpdate({ _id: response._id }, { photos: files.media.map(e => `http://localhost:3000/product-images/${response._id}/${e.originalFilename}`) })
 
                                 } catch (error) {
-                                    console.log(error)
                                     return res.json(error)
                                 }
 

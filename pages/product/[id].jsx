@@ -19,7 +19,6 @@ export default function Product() {
       getProduct(productId)
         .then(result => {
           setProduct(result.data)
-          console.log(result)
         })
     }
 
