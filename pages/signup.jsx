@@ -1,15 +1,18 @@
 import styles from '../styles/signup.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useRouter } from 'next/router'
-import { getSession } from 'next-auth/react'
-import Navbar from '../components/navbar'
+import Router from 'next/router'
+import { useSession } from 'next-auth/react'
 
 export default function Signup() {
 
-    const router = useRouter()
-
     const [user, setUser] = useState({ name: '', email: '', password: '' })
+    const { data: session, status } = useSession()
+
+    useEffect(() => {
+        if (status === "authenticated") Router.push("/")
+    }, [session])
+
 
     const handleSignup = (e) => {
         e.preventDefault()
@@ -17,68 +20,51 @@ export default function Signup() {
         axios.post(process.env.NEXTAUTH_URL + "/signup", user)
             .then(result => {
                 if (result.data._id) {
-                    return router.push('/login')
+                    return Router.push('/login')
                 }
             })
             .catch(err => console.log(err))
     }
 
     return (
-        <div className={styles.signup}>
+        status === "unauthenticated" ?
+            (<div className={styles.signup}>
 
-            <form className={styles.form} onSubmit={(e) => handleSignup(e)}>
+                <form className={styles.form} onSubmit={(e) => handleSignup(e)}>
 
-                <h1>Create account</h1>
+                    <h1>Create account</h1>
 
-                <div className={styles.input}>
-                    <span>Your name</span>
-                    <input
-                        type="text"
-                        placeholder='First and last name'
-                        value={user.name}
-                        onChange={(e) => setUser({ ...user, name: e.target.value })} />
-                </div>
+                    <div className={styles.input}>
+                        <span>Your name</span>
+                        <input
+                            type="text"
+                            placeholder='First and last name'
+                            value={user.name}
+                            onChange={(e) => setUser({ ...user, name: e.target.value })} />
+                    </div>
 
-                <div className={styles.input}>
-                    <span>e-mail</span>
-                    <input
-                        type="text"
-                        value={user.email}
-                        onChange={(e) => setUser({ ...user, email: e.target.value })} />
-                </div>
+                    <div className={styles.input}>
+                        <span>e-mail</span>
+                        <input
+                            type="text"
+                            value={user.email}
+                            onChange={(e) => setUser({ ...user, email: e.target.value })} />
+                    </div>
 
-                <div className={styles.input}>
-                    <span>Password</span>
-                    <input
-                        type="text"
-                        placeholder='At least 6 character'
-                        value={user.password}
-                        onChange={(e) => setUser({ ...user, password: e.target.value })} />
-                </div>
+                    <div className={styles.input}>
+                        <span>Password</span>
+                        <input
+                            type="text"
+                            placeholder='At least 6 character'
+                            value={user.password}
+                            onChange={(e) => setUser({ ...user, password: e.target.value })} />
+                    </div>
 
-                <button type='submit'>
-                    Create Account
-                </button>
+                    <button type='submit'>
+                        Create Account
+                    </button>
 
-            </form>
-        </div>
+                </form>
+            </div>) : <div></div>
     )
-}
-
-export async function getServerSideProps(ctx) {
-
-    const session = await getSession(ctx)
-
-    if (session) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: "/",
-            },
-        };
-    }
-
-    return {
-        props: {},
-    };
 }

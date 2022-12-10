@@ -1,6 +1,6 @@
 import { ArrowDropDown, Check, Clear, Photo } from "@mui/icons-material";
 import { getSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { addProduct } from "../services/product-service";
@@ -10,38 +10,32 @@ const categoryList = ["Electronics", "Fashion", "Health", "Kitchen", "Books"]
 
 export default function AddProduct() {
 
-    const [product, setProduct] = useState({ name: "", details: "", category: "", photos: [], price: "" });
+    const [product, setProduct] = useState({ name: "", details: "", category: "", price: "" });
     const [categoryDisplay, setCategoryDisplay] = useState(false)
     const [dialog, setDialog] = useState(false)
     const [isAdded, setIsAdded] = useState(false)
+    const [files, setFiles] = useState([])
 
-    const convertBase64 = (files) => {
-
-        for (let i = 0; i < files.length; i++) {
-
-            let reader = new FileReader();
-
-            reader.readAsDataURL(files[i]);
-            reader.onload = function () {
-                product.photos.push(reader.result)
-                setProduct({ ...product })
-            };
-            reader.onerror = function (error) {
-                console.log('Error: ', error);
-            };
-
-        }
-    }
 
     const handleForm = async (e) => {
         e.preventDefault()
 
-        const response = await addProduct(product)
+        var formData = new FormData();
 
-        console.log(response);
+        [...files].forEach((file) => {
+            formData.append("media", file)
+        });
+
+        formData.append('name', product.name)
+        formData.append('details', product.details)
+        formData.append('category', product.category)
+        formData.append('price', product.price)
+
+        const response = await addProduct(formData)
 
         if (response.data._id) {
             setProduct({ name: "", details: "", category: "", photos: [] })
+            setFiles([])
             setIsAdded(true)
             setDialog(true)
 
@@ -59,6 +53,7 @@ export default function AddProduct() {
         }
 
     }
+
 
     return (
         <div className={styles.add}>
@@ -137,11 +132,13 @@ export default function AddProduct() {
 
                                     <input
                                         type="file"
-                                        multiple onChange={(e) => convertBase64(e.target.files)} />
+                                        multiple
+                                        onChange={(e) => setFiles(e.target.files)}
+                                    />
                                 </div>
 
-                                {product.photos.map(e => {
-                                    return <img src={e} alt="" className={styles["product-image"]} />
+                                {[...files].map(e => {
+                                    return <img src={URL.createObjectURL(e)} alt="" className={styles["product-image"]} />
                                 })}
                             </div>
                         </ScrollContainer>
