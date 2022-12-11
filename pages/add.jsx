@@ -5,8 +5,7 @@ import Navbar from "../components/navbar";
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { addProduct } from "../services/product-service";
 import styles from '../styles/add.module.css'
-
-const categoryList = ["Electronics", "Fashion", "Health", "Kitchen", "Books"]
+import { categories } from "../data/categories";
 
 export default function AddProduct() {
 
@@ -102,7 +101,7 @@ export default function AddProduct() {
                                     onMouseOver={() => setCategoryDisplay(true)}
                                     onMouseLeave={() => setCategoryDisplay(false)}>
 
-                                    {categoryList.map(e => {
+                                    {categories.map(e => {
                                         return (
                                             <span onClick={() => setProduct({ ...product, category: e }) & setCategoryDisplay(false)} key={e}>
                                                 {e}

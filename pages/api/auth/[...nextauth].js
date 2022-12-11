@@ -11,25 +11,13 @@ export const authOptions = {
             authorize: async (credentials) => {
 
                 await connectMongo()
-                    .then(() => {
-                    })
-                    .catch(() => {
-                        return null
-                    })
+                    .catch(() => null)
 
                 // database look up
                 const user = await User.findOne({ email: credentials.email, password: credentials.password })
 
-                if (user?._id) {
-
-                    return {
-                        id: user._id,
-                        name: user.name,
-                        role: user.role,
-                    }
-                }
-
-                return null;
+                if (user?._id) return { name: user.name, role: user.role }
+                else return null;
 
             },
         }),
@@ -41,20 +29,12 @@ export const authOptions = {
     callbacks: {
         jwt: ({ token, user }) => {
             // first time jwt callback is run, user object is available
-            if (user) {
-                token.id = user.id;
-                token.role = user.role;
-            }
-
+            if (user) token.role = user.role;
             return token;
         },
         session: ({ session, token }) => {
 
-            if (token) {
-                session.id = token.id;
-                session.role = token.role;
-            }
-
+            if (token) session.role = token.role;
             return session;
         },
     },
