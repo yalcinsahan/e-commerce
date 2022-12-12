@@ -1,0 +1,91 @@
+.cart-container {
+    position: relative;
+}
+
+.cart-container * {
+    display: block;
+}
+
+.cart {
+    position: absolute;
+    width: 400px;
+    max-height: 600px;
+    background-color: white;
+    bottom: 0;
+    transform: translateY(100%);
+    right: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+/* width */
+.cart::-webkit-scrollbar {
+    display: none;
+    width: 10px;
+}
+
+/* Handle */
+.cart::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.cart h1 {
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 5px;
+    z-index: 999;
+    font-size: large;
+}
+
+.cart p {
+    padding: 10px;
+}
+
+.cart button {
+    position: absolute;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: gold;
+}
+
+.cart-item {
+    width: 100%;
+    border: 1px solid gray;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    position: relative;
+}
+
+.cart-item img {
+    display: block;
+    flex: 1;
+    height: 60px;
+}
+
+.item-info {
+    flex: 4;
+    padding: 5px;
+}
+
+.item-info b {
+    margin-top: 10px;
+    margin-left: 10px;
+    color: #F27A1A;
+}
+
+.remove-icon {
+    font-size: 15px;
+    color: red;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+
+}

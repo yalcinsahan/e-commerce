@@ -16,7 +16,7 @@ export const authOptions = {
                 // database look up
                 const user = await User.findOne({ email: credentials.email, password: credentials.password })
 
-                if (user?._id) return { name: user.name, role: user.role }
+                if (user?._id) return { _id: user._id, name: user.name, role: user.role }
                 else return null;
 
             },
@@ -29,12 +29,18 @@ export const authOptions = {
     callbacks: {
         jwt: ({ token, user }) => {
             // first time jwt callback is run, user object is available
-            if (user) token.role = user.role;
+            if (user) {
+                token.role = user.role;
+                token._id = user._id
+            };
             return token;
         },
         session: ({ session, token }) => {
 
-            if (token) session.role = token.role;
+            if (token) {
+                session.role = token.role
+                session._id = token._id
+            };
             return session;
         },
     },

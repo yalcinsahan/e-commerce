@@ -13,8 +13,8 @@
     "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.4",
+    "@reduxjs/toolkit": "^1.9.1",
     "axios": "^0.27.2",
-    "dotenv": "^16.0.3",
     "formidable": "^2.1.1",
     "fs": "^0.0.1-security",
     "mongoose": "^6.5.2",
@@ -22,7 +22,9 @@
     "next-auth": "^4.10.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-indiana-drag-scroll": "^2.2.0"
+    "react-indiana-drag-scroll": "^2.2.0",
+    "react-redux": "^8.0.5",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "eslint": "8.22.0",

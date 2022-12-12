@@ -161,6 +161,8 @@ export async function getServerSideProps(ctx) {
 
     const session = await getSession(ctx)
 
+    console.log(session);
+
     if (session?.role !== "admin") {
         return {
             redirect: {

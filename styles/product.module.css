@@ -50,7 +50,6 @@
 .informations h5 {
     color: #f27a1a;
     font-size: 24px;
-    margin-top: 20px;
 }
 
 .informations p {
@@ -64,4 +63,21 @@
 .informations b {
     display: block;
     margin-bottom: 10px;
+}
+
+.price-and-add {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.add-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    background-color: gold;
+    margin-right: 20px;
+    border-radius: 20px;
+    gap: 10px;
 }

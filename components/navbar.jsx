@@ -2,10 +2,17 @@ import { Add, Login, Logout, PersonAddAlt, PersonOutline, Search, ShoppingCartOu
 import styles from '../styles/navbar.module.css'
 import Link from 'next/link'
 import { useSession, signOut } from "next-auth/react"
+import { useDispatch, useSelector } from 'react-redux'
+import { changeDisplay } from '../redux/cart-slice'
+import Cart from './cart'
 
 export default function Navbar() {
 
     const { data: session } = useSession()
+
+    const items = useSelector(state => state.cart.items)
+
+    const dispatch = useDispatch()
 
     return (
         <div className={styles.navbar}>
@@ -46,20 +53,21 @@ export default function Navbar() {
                             </div>
                         </Link>
 
-                        {session.role=="admin" ?(
+                        {session.role == "admin" ? (
                             <Link href="/add">
-                            <div>
-                                <Add />
-                                <span>Add</span>
-                            </div>
-                        </Link>
-                        ):(
-                            <Link href="/cart">
-                            <div>
+                                <div>
+                                    <Add />
+                                    <span>Add</span>
+                                </div>
+                            </Link>
+                        ) : (
+
+                            <div className={styles['cart-container']} onClick={() => dispatch(changeDisplay())}>
+                                <p>{items?.length}</p>
                                 <ShoppingCartOutlined />
                                 <span>Cart</span>
                             </div>
-                        </Link>
+
                         )}
 
                         <div onClick={() => signOut()}>
@@ -69,6 +77,8 @@ export default function Navbar() {
 
                     </>}
             </div>
+
+            <Cart />
         </div>
     )
 }
