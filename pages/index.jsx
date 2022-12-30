@@ -17,7 +17,7 @@ export default function Home(props) {
       <div className={styles["products"]}>
         {props.products.map((product, index) => (
 
-          <div key={product._id} className={styles["product"]}>
+          <div key={uuidv4()} className={styles["product"]}>
             <div onClick={() => Router.push(`/product/${product._id}`)} className={styles["image-container"]}>
               <Image fill style={{ objectFit: "cover" }} src={product.photos[0]} alt={product.name} priority={index < 8 ? true : false} />
             </div>
@@ -33,7 +33,7 @@ export default function Home(props) {
 }
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
   const products = await getAllProducts()
 

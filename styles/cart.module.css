@@ -63,10 +63,12 @@
     position: relative;
 }
 
-.cart-item img {
+.item-image {
     display: block;
     flex: 1;
-    height: 60px;
+    height: 80px;
+    position: relative;
+    margin: 5px;
 }
 
 .item-info {

@@ -4,14 +4,14 @@ import axios from 'axios'
 import Router from 'next/router'
 import { useSession } from 'next-auth/react'
 
-export default function Signup() {
+export default function Signup(props) {
 
     const [user, setUser] = useState({ name: '', email: '', password: '' })
     const { data: session, status } = useSession()
 
     useEffect(() => {
         if (status === "authenticated") Router.push("/")
-    }, [session])
+    }, [status])
 
 
     const handleSignup = (e) => {
@@ -67,4 +67,11 @@ export default function Signup() {
                 </form>
             </div>) : <div></div>
     )
+}
+
+export async function getServerSideProps() {
+
+    return {
+        props: {},
+    };
 }

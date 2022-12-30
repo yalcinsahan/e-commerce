@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCart, removeItem } from '../redux/cart-slice'
 import { updateUserCart } from '../services/user-service'
 import styles from '../styles/cart.module.css'
+import { v4 as uuidv4 } from 'uuid';
+import Image from 'next/image'
 
 export default function Cart() {
 
@@ -18,7 +20,7 @@ export default function Cart() {
         if (session?._id) {
             dispatch(getCart(session._id))
         }
-    }, [session])
+    }, [session, dispatch])
 
     const removeCartItem = (id) => {
         if (session?._id) {
@@ -35,11 +37,11 @@ export default function Cart() {
                 <h1>Shopping Cart</h1>
 
                 {items.map(item =>
-                    <div className={styles['cart-item']}>
+                    <div className={styles['cart-item']} key={uuidv4()}>
 
                         <HighlightOff className={styles['remove-icon']} onClick={() => removeCartItem(item._id)} />
 
-                        < img src={item.photos[0]} style={{ objectFit: "contain" }} />
+                        <div className={styles['item-image']}>< Image fill src={item.photos[0]} style={{ objectFit: "contain" }} alt={item.name} /></div>
                         <div className={styles['item-info']}>
                             <p>{item.name}</p>
                             <b>$ {item.price}</b>

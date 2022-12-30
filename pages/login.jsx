@@ -4,14 +4,14 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import styles from '../styles/login.module.css'
 
-export default function Login() {
+export default function Login(props) {
 
     const [user, setUser] = useState({ name: '', email: '', password: '' })
     const { data: session, status } = useSession()
 
     useEffect(() => {
         if (status === "authenticated") Router.push("/")
-    }, [session])
+    }, [status])
 
 
     const handleLogin = (e) => {
@@ -55,4 +55,11 @@ export default function Login() {
             </div>
         ) : <div></div>
     )
+}
+
+export async function getServerSideProps() {
+
+    return {
+        props: {},
+    };
 }

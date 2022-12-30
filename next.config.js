@@ -11,7 +11,6 @@ const nextConfig = {
     MONGO_URI: "mongodb://0.0.0.0:27017/e-commerce"
   },
   images: {
-    //domains: ["http://localhost:3000"] 
     remotePatterns: [
       {
         protocol: 'http',

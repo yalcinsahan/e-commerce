@@ -1,11 +1,12 @@
 import { ArrowDropDown, Check, Clear, Photo } from "@mui/icons-material";
 import { getSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import Navbar from "../components/navbar";
+import { useState } from "react";
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { addProduct } from "../services/product-service";
 import styles from '../styles/add.module.css'
 import { categories } from "../data/categories";
+import { v4 as uuidv4 } from 'uuid';
+import Image from "next/image";
 
 export default function AddProduct() {
 
@@ -103,7 +104,7 @@ export default function AddProduct() {
 
                                     {categories.map(e => {
                                         return (
-                                            <span onClick={() => setProduct({ ...product, category: e }) & setCategoryDisplay(false)} key={e}>
+                                            <span onClick={() => setProduct({ ...product, category: e }) & setCategoryDisplay(false)} key={uuidv4()}>
                                                 {e}
                                             </span>
                                         )
@@ -137,7 +138,7 @@ export default function AddProduct() {
                                 </div>
 
                                 {[...files].map(e => {
-                                    return <img src={URL.createObjectURL(e)} alt="" className={styles["product-image"]} />
+                                    return <div className={styles["product-image"]} key={uuidv4()} ><Image fill src={URL.createObjectURL(e)} alt="" style={{ objectFit: "contain" }} /></div>
                                 })}
                             </div>
                         </ScrollContainer>
